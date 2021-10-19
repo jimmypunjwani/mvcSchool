@@ -21,8 +21,8 @@ namespace mvcSchool.Models
         }
     
         public int LecturerID { get; set; }
-        public string First_Name { get; set; }
-        public string Last_Name { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollments { get; set; }

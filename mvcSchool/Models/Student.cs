@@ -24,8 +24,8 @@ namespace mvcSchool.Models
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public System.DateTime EnrollmentDate { get; set; }
-        public string Middle_Name { get; set; }
         public string Hobby { get; set; }
+        public string MiddleName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Enrollment> Enrollments { get; set; }
