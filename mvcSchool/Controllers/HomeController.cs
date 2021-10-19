@@ -26,5 +26,13 @@ namespace mvcSchool.Controllers
 
             return View();
         }
+
+        //Adding Test View:
+        public ActionResult TestView()
+        {
+            ViewBag.Message = "TestView";
+
+            return View();
+        }
     }
 }
