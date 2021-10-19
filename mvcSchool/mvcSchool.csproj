@@ -179,6 +179,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202110191821105_InitialCreate.cs" />
+    <Compile Include="Migrations\202110191821105_InitialCreate.Designer.cs">
+      <DependentUpon>202110191821105_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202110191838103_Added BirthDate Column.cs" />
+    <Compile Include="Migrations\202110191838103_Added BirthDate Column.Designer.cs">
+      <DependentUpon>202110191838103_Added BirthDate Column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ClassMetadata\CoursesMetadata.cs" />
     <Compile Include="Models\ClassMetadata\EnrollmentsMetadata.cs" />
@@ -377,6 +386,14 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202110191821105_InitialCreate.resx">
+      <DependentUpon>202110191821105_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202110191838103_Added BirthDate Column.resx">
+      <DependentUpon>202110191838103_Added BirthDate Column.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

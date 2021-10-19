@@ -3,7 +3,7 @@ CREATE TABLE [dbo].[Student] (
     [LastName]       NVARCHAR (50) NOT NULL,
     [FirstName]      NVARCHAR (50) NOT NULL,
     [EnrollmentDate] DATETIME      NOT NULL,
-	[Middle Name]	 NVARCHAR (50) NULL,
+	[MiddleName]	 NVARCHAR (50) NULL,
 	[Hobby]			 NVARCHAR (50) NULL,
     PRIMARY KEY CLUSTERED ([StudentID] ASC)
 )
@@ -17,8 +17,8 @@ CREATE TABLE [dbo].[Course] (
 
 CREATE TABLE [dbo].[Lecturer] (
     [LecturerID] 	INT           IDENTITY (1, 1) NOT NULL,
-    [First Name]    NVARCHAR (50) NOT NULL,
-    [Last Name]  	NVARCHAR (50) NOT NULL,
+    [FirstName]    NVARCHAR (50) NOT NULL,
+    [LastName]  	NVARCHAR (50) NOT NULL,
     PRIMARY KEY CLUSTERED ([LecturerID] ASC)
 )
 
