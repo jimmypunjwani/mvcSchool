@@ -180,6 +180,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ClassMetadata\CoursesMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\EnrollmentsMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\LecturersMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\StudentsMetadata.cs" />
     <Compile Include="Models\Course.cs">
       <DependentUpon>mvcSchool_DBModel.tt</DependentUpon>
     </Compile>
@@ -357,7 +361,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\ClassMetadata\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
