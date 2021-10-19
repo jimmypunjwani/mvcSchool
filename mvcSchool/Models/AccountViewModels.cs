@@ -49,10 +49,10 @@ namespace mvcSchool.Models
 
     public class LoginViewModel
     {
+        //Updating Logging from Email to User Name
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
@@ -65,12 +65,18 @@ namespace mvcSchool.Models
 
     public class RegisterViewModel
     {
+        //Added User Name:
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        [Display(Name = "User Name")]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email Address")]
         public string Email { get; set; }
 
-        //Added Custom Field:
+        //Added Custom Field BirthDate:
         [Required]
         [DataType(DataType.DateTime)]
         [Display(Name = "Date of Birth")]
@@ -86,6 +92,11 @@ namespace mvcSchool.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        //Added User Role:
+        [Required]
+        [Display(Name = "User Role")]
+        public string UserRole { get; set; }
     }
 
     public class ResetPasswordViewModel

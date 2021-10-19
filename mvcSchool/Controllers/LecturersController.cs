@@ -11,11 +11,13 @@ using mvcSchool.Models;
 
 namespace mvcSchool.Controllers
 {
+    [Authorize(Roles = "Admin,Supervisor,Teacher")]
     public class LecturersController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
 
         // GET: Lecturers
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             return View(await db.Lecturers.ToListAsync());
@@ -91,6 +93,7 @@ namespace mvcSchool.Controllers
         }
 
         // GET: Lecturers/Delete/5
+        [Authorize(Roles = "Admin,Supervisor")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -106,6 +109,7 @@ namespace mvcSchool.Controllers
         }
 
         // POST: Lecturers/Delete/5
+        [Authorize(Roles = "Admin,Supervisor")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)

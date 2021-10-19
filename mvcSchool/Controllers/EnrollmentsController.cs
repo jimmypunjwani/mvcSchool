@@ -11,11 +11,13 @@ using mvcSchool.Models;
 
 namespace mvcSchool.Controllers
 {
+    [Authorize(Roles = "Admin,Supervisor,Teacher")]
     public class EnrollmentsController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
 
         // GET: Enrollments
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             var enrollments = db.Enrollments.Include(e => e.Course).Include(e => e.Lecturer).Include(e => e.Student);

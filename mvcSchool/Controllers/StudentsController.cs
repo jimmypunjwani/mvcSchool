@@ -11,7 +11,7 @@ using mvcSchool.Models;
 
 namespace mvcSchool.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "Admin,Teacher,Student")]
     public class StudentsController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
@@ -93,6 +93,7 @@ namespace mvcSchool.Controllers
         }
 
         // GET: Students/Delete/5
+        [Authorize(Roles = "Admin,Teacher")]
         public async Task<ActionResult> Delete(int? id)
         {
             if (id == null)
@@ -108,6 +109,7 @@ namespace mvcSchool.Controllers
         }
 
         // POST: Students/Delete/5
+        [Authorize(Roles = "Admin,Teacher")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> DeleteConfirmed(int id)
