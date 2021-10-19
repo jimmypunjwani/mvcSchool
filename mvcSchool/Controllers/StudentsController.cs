@@ -11,11 +11,13 @@ using mvcSchool.Models;
 
 namespace mvcSchool.Controllers
 {
+    [Authorize]
     public class StudentsController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
 
         // GET: Students
+        [AllowAnonymous]
         public async Task<ActionResult> Index()
         {
             return View(await db.Students.ToListAsync());
