@@ -11,13 +11,13 @@ namespace mvcSchool
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
-            //Adding ScriptBundle for jquery-ui:
-            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
-                        "~/Scripts/jquery-ui{version}.js"));
-
             //Adding ScriptBundle for jquery-ajax:
             bundles.Add(new ScriptBundle("~/bundles/jquery-ajax").Include(
                         "~/Scripts/jquery.unobtrusive-ajax.js"));
+
+            //Adding ScriptBundle for jquery-ui:
+            bundles.Add(new ScriptBundle("~/bundles/jquery-ui").Include(
+                        "~/Scripts/jquery-ui-{version}.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
@@ -35,9 +35,9 @@ namespace mvcSchool
                       "~/Content/site.css"));
 
             //Adding StyleBundle for jqueryui:
-            bundles.Add(new ScriptBundle("~/Content/jqueryui").Include(
-                        "~/Content/themes/base/all.css",
-                        "~/Content/themes/base/autocomplete.css"));
+            bundles.Add(new StyleBundle("~/Content/jqueryui").Include(
+                    "~/Content/themes/base/all.css",
+                    "~/Content/themes/base/autocomplete.css"));
         }
     }
 }

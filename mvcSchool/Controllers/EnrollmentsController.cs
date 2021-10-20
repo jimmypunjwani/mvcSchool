@@ -131,6 +131,17 @@ namespace mvcSchool.Controllers
             return RedirectToAction("Index");
         }
 
+        //Adding Function of autocomplete for Student Name:
+        [HttpPost]
+        public JsonResult GetStudents(string term)
+        {
+            var students = db.Students.Select(q => new {
+                FullName = q.FirstName + " " + q.LastName,
+                Id = q.StudentID
+            }).Where(q => q.FullName.Contains(term));
+            return Json(students, JsonRequestBehavior.AllowGet);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
