@@ -6,7 +6,7 @@ using System.Web;
 
 namespace mvcSchool.Models
 {
-    public class StudentsMetadata
+    public class StudentMetadata
     {
         [Required]
         [StringLength(50, MinimumLength = 1)]
@@ -31,7 +31,7 @@ namespace mvcSchool.Models
         public string MiddleName { get; set; }
     }
 
-    [MetadataType(typeof(StudentsMetadata))]
+    [MetadataType(typeof(StudentMetadata))]
     public partial class Student
     {
 

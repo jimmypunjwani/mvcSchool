@@ -6,7 +6,7 @@ using System.Web;
 
 namespace mvcSchool.Models
 {
-    public class EnrollmentsMetadata
+    public class EnrollmentMetadata
     {
         [Display(Name = "Grade")]
         public Nullable<decimal> Grade { get; set; }
@@ -30,7 +30,7 @@ namespace mvcSchool.Models
         public virtual Lecturer Lecturer { get; set; }
     }
 
-    [MetadataType(typeof(EnrollmentsMetadata))]
+    [MetadataType(typeof(EnrollmentMetadata))]
     public partial class Enrollment
     {
 

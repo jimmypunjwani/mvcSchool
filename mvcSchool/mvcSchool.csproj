@@ -189,10 +189,10 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\ClassMetadata\CoursesMetadata.cs" />
-    <Compile Include="Models\ClassMetadata\EnrollmentsMetadata.cs" />
-    <Compile Include="Models\ClassMetadata\LecturersMetadata.cs" />
-    <Compile Include="Models\ClassMetadata\StudentsMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\CourseMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\EnrollmentMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\LecturerMetadata.cs" />
+    <Compile Include="Models\ClassMetadata\StudentMetadata.cs" />
     <Compile Include="Models\Course.cs">
       <DependentUpon>mvcSchool_DBModel.tt</DependentUpon>
     </Compile>
