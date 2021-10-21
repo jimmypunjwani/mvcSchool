@@ -68,6 +68,32 @@ namespace mvcSchool.Controllers
             return View(enrollment);
         }
 
+        //Adding New Function for AddStudent which we have refered in Create View:
+        [HttpPost]
+        public async Task<JsonResult> AddStudent([Bind(Include = "CourseID,StudentID")] Enrollment enrollment)
+        {
+            try
+            {
+                //Checking if Student is already enrolled in the particular Course:
+                var IsEnrolled = db.Enrollments.Any(q => q.CourseID == enrollment.CourseID && q.StudentID == enrollment.StudentID);
+                //Checking both conditions (IsEnrolled == false is similar to !IsEnrolled):
+                if (ModelState.IsValid && !IsEnrolled)
+                {
+                    db.Enrollments.Add(enrollment);
+                    await db.SaveChangesAsync();
+                    return Json(new { IsSuccess = true, Message = "Student Added Successfully."}, JsonRequestBehavior.AllowGet);
+                }
+                return Json(new { IsSuccess = false, Message = "Student Already Enrolled or Not Entered." }, JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception)
+            {
+
+                return Json(new { IsSuccess = false, Message = "Please Contact Your Administartor." }, JsonRequestBehavior.AllowGet);
+            }
+        }
+
+
+
         // GET: Enrollments/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {

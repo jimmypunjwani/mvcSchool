@@ -6,7 +6,8 @@
 }
 
 <script>
-    $( function () {
+    //function for autocomplete:
+    $(function () {
         $("#Student_FirstName").autocomplete({
             source: function ( request, response ) {
                 $.ajax( {
@@ -33,12 +34,53 @@
         });
     });
 
+    //Function for "Added" On Success:
+    function Added(res) {
+        if (res.IsSuccess) {
+            $(function () {
+                $("#failed").fadeOut("fast");
+                $("#failure").fadeOut("fast");
+                $("#success").fadeIn("fast");
+                //$("#success").append(res.Message);
+            })
+        }
+        else {
+            Failed(res);
+        }
+    }
+
+    //Function for "Failed" On Not Success:
+    function Failed(res) {
+        $(function () {
+            $("#failed").fadeIn("fast");
+            $("#success").fadeOut("fast");
+            $("#failure").fadeOut("fast");
+        })
+    }
+
+    //Function for "Failar" On Not Success:
+    function Failure(res) {
+        $(function () {
+            $("#failure").fadeIn("fast");
+            $("#success").fadeOut("fast");
+            $("#failed").fadeOut("fast");
+        })
+    }
+
 </script>
 
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) 
+<!--Changing Form from HTML to AJAX:
+Ajax.BeginForm("Action", "FromWhere", Object )
+    new AjaxOptions {HttpMethod, OnSuccess, OnFailur}
+-->
+@using (Ajax.BeginForm("AddStudent", "Enrollments", new AjaxOptions { 
+    HttpMethod = "POST",
+    OnSuccess = "Added",
+    OnFailure = "Failure"
+}))
 {
     @Html.AntiForgeryToken()
     
@@ -47,7 +89,23 @@
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         
+        <!--Adding div for "failed":-->
+        <div id="failed" class="alert alert-danger" style="display: none;">
+            Student Already Enrolled or Not Entered.
+        </div>
         
+
+        <!--Adding div for "success":-->
+        <div id="success" class="alert alert-success" style="display: none;">
+            Student Added Successfully.
+        </div>
+
+        <!--Adding div for "failure":-->
+        <div id="failure" class="alert alert-danger" style="display: none;">
+            Please Contact to your Administator.
+        </div>
+        
+
         @*<div class="form-group">
             @Html.LabelFor(model => model.Grade, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
