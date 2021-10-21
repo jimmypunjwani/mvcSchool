@@ -1,0 +1,58 @@
+﻿@model IEnumerable<mvcSchool.Models.Enrollment>
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>*@
+
+@if (Model.Count() < 1)
+{
+    <h1 class="text-centre alert alert-info">No Enrollment in this Course.</h1>
+}
+else
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Grade)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Course.Title)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.Lecturer.FirstName)
+                </th>*@
+            <th>
+                @*@Html.DisplayNameFor(model => model.Student.LastName)*@
+                Student Name
+            </th>
+            <th>Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Grade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Course.Title)
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.Lecturer.FirstName)
+                    </td>*@
+                <td>
+                    <!--Updating the display-->
+                    @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+                </td>
+                <td>
+                    @*@Html.ActionLink("Edit", "Edit", new { id=item.EnrollmentID }) |
+                        @Html.ActionLink("Details", "Details", new { id=item.EnrollmentID }) |*@
+                    @Html.ActionLink("Delete", "Delete", new { id = item.EnrollmentID })
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+
+

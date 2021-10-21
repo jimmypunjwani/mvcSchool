@@ -6,18 +6,62 @@
 }
 
 <script>
-    //function for autocomplete:
+
+    //JQuery Block: function for calling partial View:
     $(function () {
+
+        //Adding function to reload:
+        function LoadEnrollments(cid) {
+            //Ajax Call:
+            $.ajax({
+                //Putting actions:
+                //Html Action function for url:
+                url: "@Url.Action("_enrollmentPartial", "Enrollments")",
+                //Our data type is html because we are loding html data from the contoller function:
+                dataType: "html",
+                //used as a good practice to return correct character set for html:
+                contentType: "application/html; charset-utf-8",
+                //Adding Type is get as we are getting data:
+                type: "GET",
+                //Passing data as our action in the controller is expecting some data in our case CourseID.
+                data: {
+                    //This is the name of the parm passed in the contoller function and cid is our local variable:
+                    courseid: cid
+                },
+                //defining success event:
+                //When a success call is made contoller function expects some sort of data in return in for of list:
+                success: function (data) {
+                    $("#data").fadeOut().html(data).fadeIn();
+                }
+            });
+        }
+
+
+        //This gets the value of CourseID which is currently selected and stored in a variable:
+        var cid = $("#CourseID").val();
+        LoadEnrollments(cid);
+
+        //This trigger change in CourseID:
+        $("#CourseID").change(function () {
+            var cid = $("#CourseID").val();
+            LoadEnrollments(cid);
+            $("#failed").fadeOut("fast");
+            $("#success").fadeOut("fast");
+            $("#failure").fadeOut("fast");
+            $("#Student_FirstName").val("");
+        });
+
+        //This is for autocomplete Student Name function:
         $("#Student_FirstName").autocomplete({
-            source: function ( request, response ) {
-                $.ajax( {
+            source: function (request, response) {
+                $.ajax({
                     url: "/Enrollments/GetStudents",
                     dataType: "json",
                     type: "POST",
                     data: {
                         term: request.term
                     },
-                    success: function ( data ) {
+                    success: function (data) {
                         console.log(data);
                         $("#Student_FirstName").val("");
                         response($.map(data, function (item) {
@@ -34,14 +78,41 @@
         });
     });
 
-    //Function for "Added" On Success:
+
+
+    //Javascript Function: for "Added" On Success:
     function Added(res) {
         if (res.IsSuccess) {
             $(function () {
                 $("#failed").fadeOut("fast");
                 $("#failure").fadeOut("fast");
                 $("#success").fadeIn("fast");
+                //reload the data grid:
+                var cid = $("#CourseID").val();
+                //Ajax Call: Repeating the same function:
+                $.ajax({
+                    //Putting actions:
+                    //Html Action function for url:
+                    url: "@Url.Action("_enrollmentPartial", "Enrollments")",
+                    //Our data type is html because we are loding html data from the contoller function:
+                    dataType: "html",
+                    //used as a good practice to return correct character set for html:
+                    contentType: "application/html; charset-utf-8",
+                    //Adding Type is get as we are getting data:
+                    type: "GET",
+                    //Passing data as our action in the controller is expecting some data in our case CourseID.
+                    data: {
+                        //This is the name of the parm passed in the contoller function and cid is our local variable:
+                        courseid: cid
+                    },
+                    //defining success event:
+                    //When a success call is made contoller function expects some sort of data in return in for of list:
+                    success: function (data) {
+                        $("#data").fadeOut().html(data).fadeIn();
+                    }
+                });
                 //$("#success").append(res.Message);
+                $("#Student_FirstName").val("");
             })
         }
         else {
@@ -49,7 +120,7 @@
         }
     }
 
-    //Function for "Failed" On Not Success:
+    //Javascript Function: for "Failed" On Not Success:
     function Failed(res) {
         $(function () {
             $("#failed").fadeIn("fast");
@@ -58,7 +129,7 @@
         })
     }
 
-    //Function for "Failar" On Not Success:
+    //Javascript Function: for "Failar" On Not Success:
     function Failure(res) {
         $(function () {
             $("#failure").fadeIn("fast");
@@ -151,6 +222,14 @@ Ajax.BeginForm("Action", "FromWhere", Object )
         </div>
     </div>
 }
+
+<!--Adding Partial View for Enrollment Grid:-->
+<hr/>
+
+<div id="data">
+    @*@Html.Action("_enrollmentPartial", "Enrollment")*@
+</div>
+
 
 <div>
     @Html.ActionLink("Back to List", "Index")
