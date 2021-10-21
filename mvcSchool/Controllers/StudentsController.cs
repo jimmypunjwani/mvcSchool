@@ -15,6 +15,27 @@ namespace mvcSchool.Controllers
     public class StudentsController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
+        //Defining property for Application DB Context to add CourseID and EnrollmentID:
+        private ApplicationDbContext context;
+
+        public StudentsController()
+        {
+            //Initializing Application DB Context:
+            context = new ApplicationDbContext();
+        }
+
+
+        //Adding Controller for the partial view (Async doesnot support partial view):
+        public PartialViewResult _studentPartial(int? studid)
+        {
+            var enrollments = db.Enrollments
+                .Where(q => q.StudentID == studid)
+                .Include(e => e.Course)
+                .Include(e => e.Student);
+            return PartialView(enrollments.ToList());
+        }
+
+        
 
         // GET: Students
         [AllowAnonymous]
@@ -129,4 +150,6 @@ namespace mvcSchool.Controllers
             base.Dispose(disposing);
         }
     }
+
+    
 }

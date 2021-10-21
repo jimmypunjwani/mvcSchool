@@ -222,6 +222,7 @@
     <Compile Include="Models\Student.cs">
       <DependentUpon>mvcSchool_DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\StudentViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -372,6 +373,7 @@
     <Content Include="Views\Enrollments\Edit.cshtml" />
     <Content Include="Views\Enrollments\Index.cshtml" />
     <Content Include="Views\Enrollments\_enrollmentPartial.cshtml" />
+    <Content Include="Views\Students\_studentPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
