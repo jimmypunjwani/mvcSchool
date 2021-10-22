@@ -15,13 +15,11 @@ namespace mvcSchool.Controllers
     public class StudentsController : Controller
     {
         private mvcSchool_DBEntities db = new mvcSchool_DBEntities();
-        //Defining property for Application DB Context to add CourseID and EnrollmentID:
-        private ApplicationDbContext context;
+        
+        
 
         public StudentsController()
         {
-            //Initializing Application DB Context:
-            context = new ApplicationDbContext();
         }
 
 
@@ -82,6 +80,16 @@ namespace mvcSchool.Controllers
             return View(student);
         }
 
+
+        //Adding New Function for AddStudent which we have refered in Create View:
+        //[HttpPost]
+        //public async Task<JsonResult> AddStudent([Bind(Include = "CourseID,StudentID")] Enrollment enrollment)
+        //{
+        //    return (new EnrollmentsController()).AddStudent(enrollment);
+        //}
+
+
+
         // GET: Students/Edit/5
         public async Task<ActionResult> Edit(int? id)
         {
@@ -94,6 +102,8 @@ namespace mvcSchool.Controllers
             {
                 return HttpNotFound();
             }
+            //ViewBag.StudentCourse = new SelectList(db.Courses, "CourseID", "Title");
+            ViewBag.CourseID = new SelectList(db.Courses, "CourseID", "Title");
             return View(student);
         }
 
@@ -108,7 +118,7 @@ namespace mvcSchool.Controllers
             {
                 db.Entry(student).State = EntityState.Modified;
                 await db.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction("Edit");
             }
             return View(student);
         }

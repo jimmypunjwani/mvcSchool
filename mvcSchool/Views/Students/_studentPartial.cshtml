@@ -6,11 +6,11 @@
 
 @if (Model.Count() < 1)
 {
-    <h1 class="text-centre alert alert-info">Not Enrolled any Course.</h1>
+    <h1 class="text-centre alert alert-info">Not Enrolled in any Course.</h1>
 }
 else
 {
-    <table class="table">
+    <table class="table table-condensed table-responsive">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Grade)
@@ -21,10 +21,10 @@ else
             @*<th>
                 @Html.DisplayNameFor(model => model.Lecturer.FirstName)
             </th>*@
-            <th>
+            <!--<th>-->
                 @*@Html.DisplayNameFor(model => model.Student.LastName)*@
-                Student Name
-            </th>
+                <!--Student Name
+            </th>-->
             <th>Action</th>
         </tr>
 
@@ -40,13 +40,13 @@ else
                 @*<td>
                     @Html.DisplayFor(modelItem => item.Lecturer.FirstName)
                 </td>*@
-            <td>
+            @*<td>
                 @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
-            </td>
+            </td>*@
                 <td>
                     @*@Html.ActionLink("Edit", "Edit", new { id = item.EnrollmentID }) |*@
                     @*@Html.ActionLink("Details", "Details", new { id = item.EnrollmentID }) |*@
-                    @Html.ActionLink("Delete", "DeleteCourse", "Enrollments", new { id = item.EnrollmentID }, new { id = "CoruseDelete"})
+                    @Html.ActionLink("Delete", "Delete", "Enrollments", new { id = item.EnrollmentID, studid= item.StudentID , source = "Students", page = "Edit" }, new { id = "CoruseDelete"})
                 </td>
             </tr>
         }

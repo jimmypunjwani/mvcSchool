@@ -1,5 +1,6 @@
 ﻿@model mvcSchool.Models.Student
 
+
 @{
     ViewBag.Title = "Edit";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -34,6 +35,7 @@
                     $("#data").fadeOut().html(data).fadeIn();
                 }
             });
+            $("#success").fadeOut("fast");
         }
 
 
@@ -43,8 +45,8 @@
 
         //This trigger change in CourseID:
         $("#StudentID").change(function () {
-            var cid = $("#StudentID").val();
-            LoadEnrollments(cid);
+            var sid = $("#StudentID").val();
+            LoadEnrollments(sid);
             $("#failed").fadeOut("fast");
             $("#success").fadeOut("fast");
             $("#failure").fadeOut("fast");
@@ -175,8 +177,57 @@
     </div>
 }
 
+<hr/>
+
+<!--Adding Enrollment Add Div-->
+<h2>Courses</h2>
+
+
+@using (Ajax.BeginForm("AddStudent", "Enrollments", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "Added",
+    OnFailure = "Failure"
+}))
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Enrollment</h4>
+    <hr />
+    @Html.HiddenFor(model => model.StudentID)
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <!--Adding div for "failed":-->
+    <div id="failed" class="alert alert-danger" style="display: none;">
+        Student Already Enrolled or Not Entered.
+    </div>
+
+
+    <!--Adding div for "success":-->
+    <div id="success" class="alert alert-success" style="display: none;">
+        Student Added Successfully.
+    </div>
+
+    <!--Adding div for "failure":-->
+    <div id="failure" class="alert alert-danger" style="display: none;">
+        Please Contact to your Administator.
+    </div>
+
+
+    <div class="form-group">
+        <label class="control-label col-md-2">Courses</label>
+        <div class="form-inline">
+            @Html.DropDownList("CourseID", (SelectList)ViewBag.CourseID, " ", htmlAttributes: new { @class = "form-control" })
+            <input type="submit" value="Enroll" class="btn btn-primary" />
+        </div>
+    </div>
+
+</div>
+}
+
+
 <!--Adding Partial View for Enrollment Grid:-->
-<hr />
 
 <div id="data">
     @*@Html.Action("_studentPartial", "Students")*@

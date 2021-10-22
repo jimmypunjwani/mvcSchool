@@ -90,7 +90,7 @@
                 //reload the data grid:
                 var cid = $("#CourseID").val();
                 //Ajax Call: Repeating the same function:
-                @*$.ajax({
+                $.ajax({
                     //Putting actions:
                     //Html Action function for url:
                     url: "@Url.Action("_enrollmentPartial", "Enrollments")",
@@ -110,7 +110,7 @@
                     success: function (data) {
                         $("#data").fadeOut().html(data).fadeIn();
                     }
-                });*@
+                });
                 //$("#success").append(res.Message);
                 $("#Student_FirstName").val("");
             })

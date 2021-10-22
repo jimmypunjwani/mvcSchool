@@ -29,11 +29,13 @@ namespace mvcSchool.Models
         [StringLength(50, MinimumLength = 1)]
         [Display(Name = "Middle Name")]
         public string MiddleName { get; set; }
+
+        
     }
 
     [MetadataType(typeof(StudentMetadata))]
     public partial class Student
     {
-
+     
     }
 }

@@ -142,7 +142,7 @@ namespace mvcSchool.Controllers
         }
 
         // GET: Enrollments/Delete/5
-        public async Task<ActionResult> Delete(int? id)
+        public async Task<ActionResult> Delete(int? id, int studid, string source, string page)
         {
             if (id == null)
             {
@@ -159,12 +159,21 @@ namespace mvcSchool.Controllers
         // POST: Enrollments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(int id)
+        public async Task<ActionResult> DeleteConfirmed(int id, int studid, string source, string page)
         {
             Enrollment enrollment = await db.Enrollments.FindAsync(id);
             db.Enrollments.Remove(enrollment);
             await db.SaveChangesAsync();
-            return RedirectToAction("Index");
+
+            if (source == "Students"){
+
+                return RedirectToAction(page,source, new { id = studid });
+            }
+            else
+            {
+                return RedirectToAction("Index");
+            }
+            
         }
 
         //Adding Function of autocomplete for Student Name:
